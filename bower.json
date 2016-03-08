@@ -1,0 +1,30 @@
+{
+  "name": "restoraunt",
+  "description": "restoran",
+  "main": "",
+  "authors": [
+    "svirid <my@mail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.5.0",
+    "angular-ui-router": "^0.2.18",
+    "angular-sanitize": "^1.5.0",
+    "angular-resource": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-strap": "^2.3.7",
+    "angular-toastr": "^1.7.0"
+  }
+}

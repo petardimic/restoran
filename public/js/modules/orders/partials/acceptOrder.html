@@ -1,0 +1,50 @@
+<div class="modal" tabindex="-1" aria-hidden="true" ">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="panel-title">
+                Ваші замовлення
+            </h3>
+        </div>
+        <div class="modal-body">
+            <p ng-if="!vm.order.length">Кошик пустий, не залишайтеся голодними оберіть найсмачнішу їжу</p>
+            <div ng-if="vm.order.length">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Ціна</th>
+                        <th>Кількість</th>
+                    </tr>
+                    <tr ng-repeat="order in vm.order track by $index">
+                        <td>{{order.menu.name}}</td>
+                        <td>{{order.menu.price}}</td>
+                        <td class="col-md-4">
+                            <div class="input-group">
+                              <span class="input-group-btn">
+                                <buuton class="btn btn-warning" ng-click="order.quantity=order.quantity>0?order.quantity-1:0">
+                                    <i class="fa fa-minus"></i>
+                                </buuton>
+                              </span>
+                                <input type="number" min="1" ng-model="order.quantity" class="form-control">
+                                <span class="input-group-btn">
+                                    <buuton class="btn btn-success" ng-click="order.quantity=order.quantity+1">
+                                        <i class="fa fa-plus"></i>
+                                    </buuton>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <label>Введіть адресу доставки</label>
+                <input type="text" class="form-control" ng-model="vm.address">
+                <label>Введіть контактний телефон</label>
+                <input type="text" class="form-control" ng-model="vm.phone">
+                </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="hideAcceptWindow()">Продовжити покупки</button>
+                <button class="btn btn-success" ng-show="vm.findOrderSum()>0" ng-click="vm.saveOrder(vm.findOrderSum());hideAcceptWindow()">
+                    Замовити {{vm.findOrderSum()}} грн
+                </button>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,79 @@
+<div class="modal" tabindex="-1" aria-hidden="true" ng-init="quantity=1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="panel-title">
+                    {{vm.selectedMenu.name}}
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img class="img-rounded" style="width: 400px; height: 264px;"
+                         ng-src="img/{{vm.selectedMenu.image}}">
+                </div>
+                <blockquote>
+                    <p>{{vm.selectedMenu.description}}</p>
+                </blockquote>
+                <label>Склад:</label>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Компонент</th>
+                        <th>Кількість</th>
+                        <th ng-if="vm.selectedMenu.is_static==0">Ціна</th>
+                        <th ng-if="vm.selectedMenu.is_static==0">Оберіть порцію</th>
+                    </tr>
+                    <tr ng-repeat="component in vm.selectedMenu.components track by $index">
+                        <td>{{::component.product.name}}</td>
+                        <td>{{::component.quantity}} {{::component.measure.name}}</td>
+                        <td ng-if="vm.selectedMenu.is_static==0">{{::component.price}}</td>
+                        <td ng-if="vm.selectedMenu.is_static==0" class="col-md-4">
+                            <div class="input-group" ng-init="component.newQuantity=0">
+                              <span class="input-group-btn">
+                                <buuton class="btn btn-warning" ng-click="component.newQuantity=component.newQuantity>0?component.newQuantity-1:0">
+                                    <i class="fa fa-minus"></i>
+                                </buuton>
+                              </span>
+                                <input type="number" min="1" ng-model="component.newQuantity" class="form-control">
+                            <span class="input-group-btn">
+                                <buuton class="btn btn-success" ng-click="component.newQuantity=component.newQuantity+1; vm.test()">
+                                    <i class="fa fa-plus"></i>
+                                </buuton>
+                              </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-lg-2">
+                        <label>Кількість:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="input-group">
+                              <span class="input-group-btn">
+                                <buuton class="btn btn-warning" ng-click="quantity=quantity>1?quantity-1:1">
+                                    <i class="fa fa-minus"></i>
+                                </buuton>
+                              </span>
+                            <input type="number" min="1" ng-model="quantity" class="form-control">
+                            <span class="input-group-btn">
+                                <buuton class="btn btn-success" ng-click="quantity=quantity+1">
+                                    <i class="fa fa-plus"></i>
+                                </buuton>
+                              </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" ng-click="hideWindow()">Відмовитись</button>
+                    <button class="btn btn-success" ng-click="vm.addToOrder(quantity);hideWindow()"
+                            ng-if="vm.selectedMenu.is_static!=0">У кошик
+                        {{vm.selectedMenu.price*quantity}} грн
+                    </button>
+                    <button class="btn btn-success" ng-click="vm.addToOrder(quantity);hideWindow()"
+                            ng-if="vm.selectedMenu.is_static==0">
+                        У кошик {{vm.findComponentsPrice(quantity)}}
+                    </button>
+                </div>
+            </div>
+        </div>

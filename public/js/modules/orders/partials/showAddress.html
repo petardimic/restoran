@@ -1,0 +1,28 @@
+<div class="modal" tabindex="-1" aria-hidden="true" ng-init="quantity=1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="panel-title">
+                    {{vm.selectedRestoraunt.name}}
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    Тут може бути мапа гугла. Або залишимо цю карту скарбів
+                    <img class="img-rounded" style="width: 400px; height: 264px;"
+                         ng-src="img/map.jpg">
+                </div>
+                <blockquote>
+                    <p>{{vm.selectedRestoraunt.address}}</p>
+                </blockquote>
+                Праюємо з {{vm.selectedRestoraunt.open_at}} по {{vm.selectedRestoraunt.close_at}}
+                Телефонуйте!
+                <blockquote>
+                    <p>{{vm.selectedRestoraunt.phone}}</p>
+                </blockquote>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" ng-click="hideAddressWindow()">ОК я вас знайду</button>
+                </div>
+            </div>
+        </div>
