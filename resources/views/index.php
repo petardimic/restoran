@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css">
     <title>EatThis</title>
 </head>
 <body>
@@ -60,10 +60,10 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" show-delivery ng-click="showDeliveryWindow()">Оплата та доставка</a>
             </li>
             <li>
-                <a show-address ng-click="showAddressWindow()" class="dropdown-toggle" data-toggle="dropdown">Контакти</a>
+                <a show-address ng-click="showAddressWindow()" class="dropdown-toggle">Контакти</a>
             </li>
             <li>
-                <a ui-sref="dashboard" class="dropdown-toggle" data-toggle="dropdown">Авторизація</a>
+                <a class="dropdown-toggle" show-login-form ng-click="showLoginFormWindow()">Авторизація</a>
             </li>
             </ul>
         </div>
@@ -109,12 +109,15 @@
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/modules/orders/factory/MenuFactory.js"></script>
 <script type="text/javascript" src="js/modules/orders/factory/RestorauntFactory.js"></script>
+<script type="text/javascript" src="js/modules/orders/factory/UserFactory.js"></script>
 <script type="text/javascript" src="js/modules/orders/factory/OrderFactory.js"></script>
 <script type="text/javascript" src="js/modules/orders/controllers/OrderCtrl.js"></script>
 <script type="text/javascript" src="js/modules/orders/directives/orderRecipe.js"></script>
 <script type="text/javascript" src="js/modules/orders/directives/showAddress.js"></script>
 <script type="text/javascript" src="js/modules/orders/directives/showDelivery.js"></script>
 <script type="text/javascript" src="js/modules/orders/directives/acceptOrder.js"></script>
+<script type="text/javascript" src="js/modules/orders/directives/showLoginForm.js"></script>
+
 
 </body>
 </html>

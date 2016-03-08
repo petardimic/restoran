@@ -14,7 +14,7 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps('created_at');
+            $table->timestamp('created_at');
             $table->mediumText('name');
             $table->float('price');
             $table->boolean('is_client_recipe')->default(TRUE);

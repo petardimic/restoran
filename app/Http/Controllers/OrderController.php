@@ -21,20 +21,21 @@ class OrderController extends Controller
         $menu = Input::get('menu');
 
         foreach ($menu as $m) {
-            if (!isset($m['components'])){
+            if (!isset($m['components'])){  //Якщо компоненти не обиралися користувачем зберігаемо замовлення
                 DB::table('order_has_menu')->insert([
                     'menu_id'=>$m['menu_id'],
                     'order_id'=>$order_id,
                     'quantity'=>$m['quantity']
                 ]);
-            } else {
-                $menu_id=DB::table('orders')->insertGetId([
+            } else { //У іншому випадку створюємо нову страву, з поміткою "is_client_recipe"
+                $menu_id=DB::table('menu')->insertGetId([
                     'name'=>$m['menu']['name'],
                     'price'=>$m['menu']['price'],
                     'is_client_recipe'=>1,
+                    'created_at' => new \DateTime(),
                     'is_static'=>1,
                     'restoraunt_id'=>Input::get('restoraunt_id'),
-                    'descriptin'=>'new',
+                    'description'=>'new',
                 ]);
                 foreach ($m['components'] as $c){
                     DB::table('components')->insert([
@@ -51,6 +52,5 @@ class OrderController extends Controller
             }
         }
 
-        return '';
     }
 }

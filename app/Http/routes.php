@@ -20,6 +20,9 @@ Route::get('restoraunt', 'RestorauntController@query');
 
 Route::post('order', 'OrderController@save');
 
+Route::any('login', 'UserController@login');
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

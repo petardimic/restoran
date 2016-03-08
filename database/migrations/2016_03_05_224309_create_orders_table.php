@@ -19,12 +19,9 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->string('address',100);
             $table->string('phone',20);
+            $table->integer('user_id')->nullable()->unsigned();
+            $table->foreign('user_id')->references('id')->on('user');
 
-        });
-
-        Schema::table('users', function (Blueprint $table){
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

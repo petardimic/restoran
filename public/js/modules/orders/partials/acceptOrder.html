@@ -6,8 +6,10 @@
                 Ваші замовлення
             </h3>
         </div>
+        <form name="orderForm">
         <div class="modal-body">
             <p ng-if="!vm.order.length">Кошик пустий, не залишайтеся голодними оберіть найсмачнішу їжу</p>
+
             <div ng-if="vm.order.length">
                 <table class="table table-hover">
                     <tr>
@@ -21,7 +23,8 @@
                         <td class="col-md-4">
                             <div class="input-group">
                               <span class="input-group-btn">
-                                <buuton class="btn btn-warning" ng-click="order.quantity=order.quantity>0?order.quantity-1:0">
+                                <buuton class="btn btn-warning"
+                                        ng-click="order.quantity=order.quantity>0?order.quantity-1:0">
                                     <i class="fa fa-minus"></i>
                                 </buuton>
                               </span>
@@ -35,16 +38,30 @@
                         </td>
                     </tr>
                 </table>
-                <label>Введіть адресу доставки</label>
-                <input type="text" class="form-control" ng-model="vm.address">
-                <label>Введіть контактний телефон</label>
-                <input type="text" class="form-control" ng-model="vm.phone">
-                </div>
+                    <div class="form-group"
+                         ng-class=" {'has-error': orderForm.address.$invalid && !orderForm.address.$pristine, 'has-success': orderForm.address.$valid}">
+                        <label class="control-label">Введіть адресу доставки</label>
+                        <input type="text" class="form-control" ng-model="vm.address" name="address" required
+                               ng-minlength="3">
+                        <span ng-show="orderForm.address.$invalid && !orderForm.address.$pristine"
+                              class="help-block with-errors">Мінімум 3 символи</span>
+                    </div>
+                    <div class="form-group"
+                         ng-class=" {'has-error': orderForm.phone.$invalid && !orderForm.phone.$pristine, 'has-success': orderForm.phone.$valid}">
+                        <label class="control-label">Введіть контактний телефон</label>
+                        <input type="text" class="form-control" name="phone" ng-model="vm.phone" required
+                               ng-minlength="5">
+                        <span ng-show="orderForm.phone.$invalid && !orderForm.phone.$pristine"
+                              class="help-block with-errors">Мінімум 5 символів</span>
+                    </div>
+            </div>
             <div class="modal-footer">
                 <button class="btn btn-warning" ng-click="hideAcceptWindow()">Продовжити покупки</button>
-                <button class="btn btn-success" ng-show="vm.findOrderSum()>0" ng-click="vm.saveOrder(vm.findOrderSum());hideAcceptWindow()">
+                <button ng-disabled="orderForm.$invalid" class="btn btn-success"  ng-show="vm.findOrderSum()>0"
+                        ng-click="vm.saveOrder(vm.findOrderSum());hideAcceptWindow()">
                     Замовити {{vm.findOrderSum()}} грн
                 </button>
             </div>
-        </div>
+        </form>
+    </div>
     </div>

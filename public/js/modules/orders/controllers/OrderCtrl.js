@@ -2,10 +2,12 @@
     'use strict';
     /*global angular*/
     angular.module('app')
-        .controller('OrderCtrl', ['toastr','MenuFactory', 'RestorauntFactory','OrderFactory', mainFunction]);
+        .controller('OrderCtrl', ['toastr','MenuFactory', 'RestorauntFactory','OrderFactory','UserFactory','$route', mainFunction]);
 
-    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory) {
+    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory, UserFactory,$route) {
         var vm = this;
+        vm.phone='090909128';
+        vm.address='Тестова адреса'
         vm.copy= function (object){
             return angular.copy(object);
         };
@@ -87,6 +89,20 @@
             vm.order=[];
             newOrder.$save(function(){
                 toastr.success('Смачного','Зараз ми зателефонуємо')
+            });
+        }
+        vm.login = function (login, password, remember){
+            var user=new UserFactory();
+            user.login=login;
+            user.password=password;
+            user.remember=remember;
+            user.$save (function (data){
+                if (data[0]==1) {
+                    $route.reload();
+
+                } else {
+                    toastr.error ('Щось не так', 'Перевірте свої данні');
+                }
             });
         }
     }
