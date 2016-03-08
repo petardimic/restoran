@@ -70,7 +70,7 @@
     </div>
 </nav>
 <div class="container-fluid" style="margin-top: 10px">
-    <div class="col-md-3" ng-repeat="menu in vm.menu track by $index" order-recipe ng-click="vm.selectedMenu=vm.copy(menu);showWindow()">
+    <div class="col-md-4" ng-repeat="menu in vm.menu track by $index" order-recipe ng-click="vm.selectedMenu=vm.copy(menu);showWindow()">
             <div class="panel  panel-card">
                 <div class="panel-heading">
                     <img ng-src="img/{{::menu.image}}">

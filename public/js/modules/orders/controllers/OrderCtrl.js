@@ -2,9 +2,9 @@
     'use strict';
     /*global angular*/
     angular.module('app')
-        .controller('OrderCtrl', ['toastr','MenuFactory', 'RestorauntFactory','OrderFactory','UserFactory','$route', mainFunction]);
+        .controller('OrderCtrl', ['toastr','MenuFactory', 'RestorauntFactory','OrderFactory','UserFactory','$window', mainFunction]);
 
-    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory, UserFactory,$route) {
+    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory, UserFactory,$window) {
         var vm = this;
         vm.phone='090909128';
         vm.address='Тестова адреса'
@@ -92,14 +92,14 @@
             });
         }
         vm.login = function (login, password, remember){
+
             var user=new UserFactory();
             user.login=login;
             user.password=password;
             user.remember=remember;
             user.$save (function (data){
-                if (data[0]==1) {
-                    $route.reload();
-
+                if (data.url!=undefined) {
+                    $window.location.href = data.url;
                 } else {
                     toastr.error ('Щось не так', 'Перевірте свої данні');
                 }

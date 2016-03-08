@@ -11,12 +11,23 @@
 */
 
 Route::get('/', function () {
-    return View::make('index');
+        return View::make('index');
+});
+
+Route::get('/cook', function () {
+        return View::make('cook');
+});
+Route::get('/director', function () {
+        return View::make('director');
+});
+Route::get('/officiant', function () {
+        return View::make('officiant');
 });
 
 Route::get('menu/{id}', 'MenuController@query');
 
 Route::get('restoraunt', 'RestorauntController@query');
+
 
 Route::post('order', 'OrderController@save');
 
