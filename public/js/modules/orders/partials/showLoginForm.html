@@ -7,6 +7,9 @@
                 </h3>
             </div>
             <div class="modal-body">
+                <label>Оберіть користувача</label>
+                <select class="form-control" ng-model="employee" ng-options="user.login_password as user.name for user in vm.users"
+                        ng-change="login=employee;password=employee;"></select>
                 <label>Введіть ім'я користувача</label>
                 <input type="text" class="form-control" ng-model="login">
                 <label>Введіть пароль</label>

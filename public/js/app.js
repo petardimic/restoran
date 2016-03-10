@@ -3,10 +3,8 @@
     /* global angular*/
     var app = angular.module('app',
         [
-            'ui.router',
             'ngResource',
             'app.services',
-            //'app.helpers',
             'ngSanitize',
             'mgcrea.ngStrap',
             'ngAnimate',

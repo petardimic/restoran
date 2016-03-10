@@ -24,7 +24,7 @@
         </nav>
     </nav>
 </header>
-<div ng-controller="OrderCtrl as vm">
+<div ng-controller="OrderCtrl as vm" ng-cloak>
 <nav class="navbar navbar-default navbar-header-full navbar-yellow" role="navigation" id="header">
     <div class="container">
         <div class="navbar-header">
@@ -100,7 +100,6 @@
 </script>
 <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="vendor/angular/angular.js"></script>
-<script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
 <script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
 <script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
 <script type="text/javascript" src="vendor/angular-toastr/dist/angular-toastr.tpls.min.js"></script>

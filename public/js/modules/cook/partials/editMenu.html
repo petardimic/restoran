@@ -1,0 +1,49 @@
+<div class="modal" tabindex="-1" aria-hidden="true" ng-init="quantity=1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="panel-title">
+                    {{vm.selectedMenu.name}}
+                </h3>
+            </div>
+
+            <div class="modal-body">
+                <label>Введіть назву страви</label>
+                    <input class="form-control" type="text" ng-model="vm.selectedMenu.name">
+                <label>
+                    Клієнт сам обирає компоненти? <input
+                        ng-true-value="0" ng-false-value="1"
+                        type="checkbox" ng-model="vm.selectedMenu.is_static">
+                </label>
+                <br>
+                <label>Введіть склад:</label>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Компонент</th>
+                        <th>Кількість, грамів</th>
+                        <th ng-if="vm.selectedMenu.is_static==0">Ціна, грн</th>
+                    </tr>
+                    <tr ng-repeat="component in vm.selectedMenu.components track by $index">
+                        <td>
+                            <select ng-model="component.product_id" class="form-control" ng-change="vm.AddEmptyComponent()"
+                                    ng-options="vm.toStr(product.id) as product.name for product in vm.products">
+                        </select>
+                        </td>
+                        <td><input
+                                type="text" class="form-control"
+                                ng-model="component.quantity"></td>
+                        <td ng-if="vm.selectedMenu.is_static==0">
+                            <input
+                                type="text" class="form-control"
+                                ng-model="component.price">
+                        </td>
+                    </tr>
+                </table>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" ng-click="vm.clearMenu();hideWindow()"><i class="fa fa-close"></i> Відмовитись</button>
+                    <button class="btn btn-success" ng-click="vm.saveMenu();hideWindow()">
+                            <i class="fa fa-save"></i> Зберегти
+                    </button>
+                </div>
+            </div>
+        </div>

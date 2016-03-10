@@ -4,13 +4,16 @@
     angular.module('app')
         .controller('OrderCtrl', ['toastr','MenuFactory', 'RestorauntFactory','OrderFactory','UserFactory','$window', mainFunction]);
 
-    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory, UserFactory,$window) {
+    function mainFunction(toastr, MenuFactory, RestorauntFactory,OrderFactory, UserFactory, $window) {
         var vm = this;
         vm.phone='090909128';
         vm.address='Тестова адреса'
         vm.copy= function (object){
             return angular.copy(object);
         };
+        vm.users= [{'name':'Кухар', 'login_password':'cook'},
+            {'name':'Офіціант', 'login_password':'officiant'}
+        ]
 
         vm.order=[];
 

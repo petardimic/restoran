@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use DB;
-
+use App\Order;
 use App\Http\Requests;
 
 class OrderController extends Controller
@@ -14,7 +14,7 @@ class OrderController extends Controller
 
         $order_id=DB::table('orders')->insertGetId([
             'price'=>Input::get('price'),
-            'adres'=>Input::get('address'),
+                'address'=>Input::get('address'),
             'phone'=>Input::get('phone'),
             'restoraunt_id'=>Input::get('restoraunt_id'),
         ]);
@@ -51,6 +51,9 @@ class OrderController extends Controller
                 }
             }
         }
+    }
 
+    function query (){
+        return Order::with('menuList','menuList.menu')->get();
     }
 }

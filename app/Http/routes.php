@@ -11,29 +11,37 @@
 */
 
 Route::get('/', function () {
-        return View::make('index');
+    return View::make('index');
 });
 
 Route::get('/cook', function () {
-        return View::make('cook');
+    return View::make('cook');
 });
 Route::get('/director', function () {
-        return View::make('director');
+    return View::make('director');
 });
 Route::get('/officiant', function () {
-        return View::make('officiant');
+    return View::make('officiant');
 });
 
 Route::get('menu/{id}', 'MenuController@query');
 
-Route::get('restoraunt', 'RestorauntController@query');
+Route::post('menu', 'MenuController@save');
 
+Route::delete('menu/{id}', 'MenuController@delete');
+
+Route::get('product', 'ProductController@query');
+
+Route::get('restoraunt', 'RestorauntController@query');
 
 Route::post('order', 'OrderController@save');
 
+Route::get('order', 'OrderController@query');
+
+
 Route::any('login', 'UserController@login');
 
-
+Route::any('logout', 'UserController@logout');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
